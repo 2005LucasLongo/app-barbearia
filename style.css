@@ -1,3 +1,15 @@
+.content-container {
+    width: 300;
+    margin: 0 auto;
+}
+
+.content {
+    width: 90%;
+    font-size: 15px; 
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+}
+
 .btn-container {
     width: 150px;
     margin: 0 auto;

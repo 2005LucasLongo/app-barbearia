@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Criar Conta</title>
+</head>
+<body>
+    <div class="content-container">
+            <div class="field">
+                <label for="name">👤 Nome<br></label>
+                <input type="text" id="name" placeholder="Digite seu nome completo..." required>
+            </div>
+            <div class="field">
+                <label for="cellphone">📱 Celular<br></label>
+                <input type="text" id="cellphone" placeholder="(DDD+Número)" required>
+            </div>
+            <div class="field">
+                <label for="phone">📞 Telefone (opcional)<br></label>
+                <input type="text" id="phone" placeholder="(DDD+Número)">
+            </div>
+            <div class="field">
+                <label for="email">📧 E-mail (opcional)<br></label>
+                <input type="email" id="email" placeholder="Digite seu e-mail...">
+            </div>
+            <div class="field">
+                <label for="birthday">🎂 Aniversário (opcional)<br></label>
+                <input type="date" id="birthday" placeholder="Digite sua data de nascimento...">
+            </div>
+            <div class="field">
+                <label for="username">👤 Usuário<br></label>
+                <input type="text" id="username" placeholder="Digite seu usuário..." required>
+            </div>
+            <div class="field">
+                <label for="password">🔒 Senha<br></label>
+                <input type="password" id="password" placeholder="Digite sua senha..." required>
+                <button type="button" id="toggle-password" onclick="togglePasswordVisibility('password', 'toggle-password')">🙈</button>
+            </div>
+            <div class="field">
+                <label for="confirm-password">🔒 Confirmar senha<br></label>
+                <input type="password" id="confirm-password" placeholder="Digite sua senha..." required>
+                <button type="button" id="toggle-confirm-password" onclick="togglePasswordVisibility('confirm-password', 'toggle-confirm-password')">🙈</button>
+            </div>
+            <div class="field">
+                <a id="alerta"></a><br>
+                <button type="button" id="submmit-register-form" onclick="registerNewUser()">REGISTRAR</button>
+            </div>
+    </div>
+    <script>
+        function togglePasswordVisibility(field, button) {
+          const passwordField = document.getElementById(field);
+          const toggleButton = document.getElementById(button);
+    
+          if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleButton.textContent = '🙊';
+          } else {
+            passwordField.type = 'password';
+            toggleButton.textContent = '🙈';
+          }
+        }
+
+        function registerNewUser() {
+            const usernameField = document.getElementById('username');
+            const passwordField = document.getElementById('password');
+            const confirmPasswordField = document.getElementById('confirm-password');
+            const alertText = document.getElementById('alerta');
+            var usernameAlreadyTaken = false;
+
+            // searchs on the db to see if a username was already taken
+            
+            // checks if the passwords are equal
+            if (usernameAlreadyTaken) {
+                alertText.textContent = 'Alguém já possui este nome de usuário!';
+            } else if (passwordField.value === confirmPasswordField.value && passwordField.value !== '' && !usernameAlreadyTaken) {
+                alertText.textContent = 'Conta criada com sucesso!';
+                // redirects to index.html
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            } else if ((passwordField.value || confirmPasswordField.value) === '') {
+                alertText.textContent = 'Digite uma senha!';
+            } else {
+                alertText.textContent = 'As senhas devem ser iguais!';
+            }
+  
+        }
+      </script>
+    
+</body>
+</html>
